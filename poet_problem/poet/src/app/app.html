@@ -1,0 +1,63 @@
+<main>
+  <h1>Find Poetry</h1>
+
+  <section>
+    <h2>Search by Author</h2>
+    <input type="text" #authorInput placeholder="Enter author name" />
+    <button (click)="searchAuthor(authorInput.value)">Search Author</button>
+
+    <div *ngIf="authorPoems.length > 0">
+      <h3>Results for {{ currentAuthorSearch }}:</h3>
+      <ul>
+        <li *ngFor="let poem of authorPoems">
+          <strong>{{ poem.title }}</strong> by {{ poem.author }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="authorSearchError" class="error-message">
+      {{ authorSearchError }}
+    </div>
+  </section>
+
+  <section>
+    <h2>Search by Title</h2>
+    <input type="text" #titleInput placeholder="Enter title" />
+    <button (click)="searchTitle(titleInput.value)">Search Title</button>
+
+    <div *ngIf="titlePoems.length > 0">
+      <h3>Results for "{{ currentTitleSearch }}":</h3>
+      <ul>
+        <li *ngFor="let poem of titlePoems">
+          <strong>{{ poem.title }}</strong> by {{ poem.author }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="titleSearchError" class="error-message">
+      {{ titleSearchError }}
+    </div>
+  </section>
+
+  <section>
+    <h2>Search by Author and Title</h2>
+    <input type="text" #authorTitleInput placeholder="Enter author name" />
+    <input type="text" #titleAuthorInput placeholder="Enter title" />
+    <button (click)="searchAuthorAndTitle(authorTitleInput.value, titleAuthorInput.value)">
+      Search Both
+    </button>
+
+    <div *ngIf="authorTitlePoems.length > 0">
+      <h3>
+        Results for {{ currentAuthorTitleSearch.author }} -
+        "{{ currentAuthorTitleSearch.title }}"
+      </h3>
+      <ul>
+        <li *ngFor="let poem of authorTitlePoems">
+          <strong>{{ poem.title }}</strong> by {{ poem.author }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="authorTitleSearchError" class="error-message">
+      {{ authorTitleSearchError }}
+    </div>
+  </section>
+</main>
